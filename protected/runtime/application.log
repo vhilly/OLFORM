@@ -3013,7 +3013,6 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/OLFORM/index.php?r=users
 ---
-<<<<<<< HEAD
 2013/10/30 15:17:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/login".' in /var/www/yii/framework/web/CWebApplication.php:286
 Stack trace:
 #0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/login')
@@ -5515,5 +5514,3 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/OLFORM/index.php?r=otform/vie
 ---
-=======
->>>>>>> 0d38a4930c9763d780173b204ca947d400ef70e6

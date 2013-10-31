@@ -31,11 +31,7 @@ array('allow',  // allow all users to perform 'index' and 'view' actions
 'users'=>array('*'),
 ),
 array('allow', // allow authenticated user to perform 'create' and 'update' actions
-<<<<<<< HEAD
 'actions'=>array('create','update','approve'),
-=======
-'actions'=>array('create','update'),
->>>>>>> 0d38a4930c9763d780173b204ca947d400ef70e6
 'users'=>array('@'),
 ),
 array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -152,7 +148,6 @@ $this->render('admin',array(
 ));
 }
 
-<<<<<<< HEAD
 public function actionApprove ()
 {
   $error=0;
@@ -169,8 +164,6 @@ public function actionApprove ()
   echo json_encode(compact('error'));
 }
 
-=======
->>>>>>> 0d38a4930c9763d780173b204ca947d400ef70e6
 /**
 * Returns the data model based on the primary key given in the GET variable.
 * If the data model is not found, an HTTP exception will be raised.
