@@ -1,4 +1,5 @@
 <div class="view">
+<<<<<<< HEAD
 <?php 
   $sv=Yii::app()->user->id;
   $name=$sv?'Vhilly':'';
@@ -85,6 +86,37 @@
   </td>
   </tr>
 </table>
+=======
+
+		<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('employee_id')); ?>:</b>
+	<?php echo CHtml::encode($data->employee_id); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('start_time')); ?>:</b>
+	<?php echo CHtml::encode($data->start_time); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('end_time')); ?>:</b>
+	<?php echo CHtml::encode($data->end_time); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('total_hours')); ?>:</b>
+	<?php echo CHtml::encode($data->total_hours); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('remarks')); ?>:</b>
+	<?php echo CHtml::encode($data->remarks); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('date')); ?>:</b>
+	<?php echo CHtml::encode($data->date); ?>
+	<br />
+
+>>>>>>> 0d38a4930c9763d780173b204ca947d400ef70e6
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_submitted')); ?>:</b>
 	<?php echo CHtml::encode($data->date_submitted); ?>
@@ -102,6 +134,7 @@
 	<?php echo CHtml::encode($data->status); ?>
 	<br />
 
+<<<<<<< HEAD
 */ ?>
 <?php $this->endWidget(); ?>
 </div>
@@ -118,3 +151,8 @@
    "json");
   }
 </script>
+=======
+	*/ ?>
+
+</div>
+>>>>>>> 0d38a4930c9763d780173b204ca947d400ef70e6

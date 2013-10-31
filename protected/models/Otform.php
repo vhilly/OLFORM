@@ -70,13 +70,22 @@ class Otform extends CActiveRecord
 			'id' => 'ID',
 			'employee_id' => 'Employee',
 			'start_time' => 'From',
+<<<<<<< HEAD
 			'end_time' => 'To',
+=======
+			'end_time' => 'End Time',
+>>>>>>> 0d38a4930c9763d780173b204ca947d400ef70e6
 			'total_hours' => 'Total Hours',
 			'remarks' => 'Remarks',
 			'date' => 'Date',
 			'date_submitted' => 'Date Submitted',
+<<<<<<< HEAD
 			'tl' => 'Team Lead',
 			'sv' => 'Supervisor',
+=======
+			'tl' => 'Tl',
+			'sv' => 'Sv',
+>>>>>>> 0d38a4930c9763d780173b204ca947d400ef70e6
 			'status' => 'Status',
 		);
 	}

@@ -17,8 +17,12 @@
       array(
         'class' => 'bootstrap.widgets.TbMenu',
         'items' => array(
+<<<<<<< HEAD
           array('label'=>'Home','icon'=>'home', 'url'=>array('/otform/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
           array('label'=>'Create O.T Form','icon'=>'book', 'url'=>array('/otform/create'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
+=======
+          array('label'=>'Home','icon'=>'home', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
+>>>>>>> 0d38a4930c9763d780173b204ca947d400ef70e6
         )
       ),
       array(
@@ -27,8 +31,12 @@
         'encodeLabel'=>false,
         'items' => array(
           '...',
+<<<<<<< HEAD
           array('label'=>'','icon'=>'off','url'=>array('/site/logout'),'visible'=>!Yii::app()->user->isGuest,'active'=>false),
           array('label'=>'Login','icon'=>'off','url'=>array('/site/login'),'visible'=>Yii::app()->user->isGuest,'active'=>false),
+=======
+          array('label'=>'','icon'=>'cogs','url'=>'#','visible'=>!Yii::app()->user->isGuest,'active'=>false),
+>>>>>>> 0d38a4930c9763d780173b204ca947d400ef70e6
         )
       ),
    )
