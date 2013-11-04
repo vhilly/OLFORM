@@ -12,13 +12,23 @@
 <?php
   $this->widget('bootstrap.widgets.TbNavbar', array(
     'brand' => 'Imperium',
+		'brandUrl'=>array('/otform/index'),
     'fixed'=>'',
     'items' => array(
       array(
         'class' => 'bootstrap.widgets.TbMenu',
         'items' => array(
-          array('label'=>'Home','icon'=>'home', 'url'=>array('/otform/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
-          array('label'=>'Create O.T Form','icon'=>'book', 'url'=>array('/otform/create'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
+/*
+                array('label'=>Yii::t('app','Home'), 'url'=>array('/site/index')),
+                array('label'=>Yii::t('app','About'), 'url'=>array('/site/page', 'view'=>'about')),
+                array('label'=>Yii::t('app','Contact'), 'url'=>array('/site/contact')),
+                array('label'=>Yii::t('app','Login'), 'url'=>array('/user/login'),'visible'=>Yii::app()->user->isGuest),
+                array('label'=>Yii::t('app','Rights'), 'url'=>array('/rights')),
+                array('label'=>Yii::t('app','Logout').' ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)
+            ,
+*/
+          #array('label'=>'Home','icon'=>'home', 'url'=>array('/otform/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
+          #array('label'=>'Create O.T Form','icon'=>'book', 'url'=>array('/otform/create'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
         )
       ),
       array(
@@ -27,8 +37,9 @@
         'encodeLabel'=>false,
         'items' => array(
           '...',
+          array('label'=>Yii::t('app','Rights'), 'url'=>array('/rights'),'visible'=>Yii::app()->user->checkAccess('Admin')),
           array('label'=>'','icon'=>'off','url'=>array('/site/logout'),'visible'=>!Yii::app()->user->isGuest,'active'=>false),
-          array('label'=>'Login','icon'=>'off','url'=>array('/site/login'),'visible'=>Yii::app()->user->isGuest,'active'=>false),
+          array('label'=>'Login','icon'=>'off','url'=>array('/user/login'),'visible'=>Yii::app()->user->isGuest,'active'=>false),
         )
       ),
    )

@@ -10,7 +10,10 @@
 	<?php echo $form->hiddenField($model,'employee_id',array('class'=>'span2')); ?>
 
         <?php echo $form->datepickerRow($model,'date',array(
-          'options' => array('language' => 'en'),
+          'options' => array(
+						'language' => 'en',
+						'format'=>'yyyy-mm-dd'
+					),
           'prepend' => '<i class="icon-calendar"></i>'
         )); ?>
         <?php echo $form->timepickerRow($model,'start_time',array('class' => 'input-small')); ?>

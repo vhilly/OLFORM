@@ -18,6 +18,16 @@
         'htmlOptions' => array('class' => 'bootstrap-widget-table')
     )
 );?>
+
+<?php 
+$otFrom = CHtml::encode($data->start_time);
+$otTo = CHtml::encode($data->end_time);
+$otDiff = strtotime($otTo) - strtotime($otFrom);
+$totalHours = floor($otDiff / 3600);
+$mins = floor(($otDiff / 60) % 60);
+?>
+
+
 <table>
   <tr>
 	  <th><?php echo CHtml::encode($data->getAttributeLabel('start_time')); ?></th>
@@ -32,7 +42,7 @@
   <tr>
     <td><?php echo CHtml::encode($data->start_time); ?></td>
     <td><?php echo CHtml::encode($data->end_time); ?></td>
-    <td><?php echo CHtml::encode($data->total_hours); ?></td>
+    <td><?php echo "$totalHours Hrs $mins Mins."; ?></td>
     <td><?php echo CHtml::encode($data->remarks); ?></td>
     <td><?php echo CHtml::encode($data->date); ?></td>
     <td><?php echo CHtml::encode($data->tl); ?></td>

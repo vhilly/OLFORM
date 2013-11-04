@@ -14,7 +14,8 @@ public $layout='//layouts/column2';
 public function filters()
 {
 return array(
-'accessControl', // perform access control for CRUD operations
+  'rights',
+#'accessControl', // perform access control for CRUD operations
 );
 }
 
@@ -25,6 +26,7 @@ return array(
 */
 public function accessRules()
 {
+/*
 return array(
 array('allow',  // allow all users to perform 'index' and 'view' actions
 'actions'=>array('index','view'),
@@ -42,6 +44,7 @@ array('deny',  // deny all users
 'users'=>array('*'),
 ),
 );
+*/
 }
 
 /**
