@@ -18,7 +18,6 @@
         )); ?>
         <?php echo $form->timepickerRow($model,'start_time',array('class' => 'input-small')); ?>
         <?php echo $form->timepickerRow($model,'end_time',array('class' => 'input-small')); ?>
-	<?php echo $form->textFieldRow($model,'total_hours',array('class'=>'span1' ,'readonly'=>'true')); ?>
 	<?php echo $form->textAreaRow($model,'remarks',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
 <div class="form-actions">

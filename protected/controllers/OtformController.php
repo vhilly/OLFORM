@@ -132,8 +132,16 @@ throw new CHttpException(400,'Invalid request. Please do not repeat this request
 */
 public function actionIndex()
 {
-$this->layout = "//layouts/main";
-$dataProvider=new CActiveDataProvider('Otform');
+
+  $criteria=array();
+  $this->layout = "//layouts/main";
+   
+  if(true){
+    $criteria=new CDbCriteria(array(                    
+        'condition'=>'employee_id='.Yii::app()->user->id
+    ));
+  }
+$dataProvider=new CActiveDataProvider('Otform',array('criteria'=>$criteria));
 $this->render('index',array(
 'dataProvider'=>$dataProvider,
 ));

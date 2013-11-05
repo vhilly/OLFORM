@@ -2,8 +2,6 @@
 <?php 
   $sv=Yii::app()->user->id;
   $name=$sv?$sv:'';
-
-  echo $name;
   if(!$sv)
    $type="success";
   else

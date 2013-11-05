@@ -40,10 +40,10 @@ class Otform extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('date,start_time, end_time,remarks', 'required'),
-			array('employee_id, total_hours, tl, sv, status', 'numerical', 'integerOnly'=>true),
+			array('employee_id, tl, sv, status', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, employee_id, start_time, end_time, total_hours, remarks, date, date_submitted, tl, sv, status', 'safe', 'on'=>'search'),
+			array('id, employee_id, start_time, end_time, remarks, date, date_submitted, tl, sv, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,7 +57,7 @@ class Otform extends CActiveRecord
 		return array(
 			'tl0' => array(self::BELONGS_TO, 'Employee', 'tl'),
 			'sv0' => array(self::BELONGS_TO, 'Employee', 'sv'),
-			'users' => array(self::BELONGS_TO, 'User', 'user_id'),
+			'users' => array(self::BELONGS_TO, 'Users', 'employee_id'),
 		);
 	}
 
@@ -71,7 +71,7 @@ class Otform extends CActiveRecord
 			'employee_id' => 'Employee',
 			'start_time' => 'From',
 			'end_time' => 'To',
-			'total_hours' => 'Total Hours',
+		#	'total_hours' => 'Total Hours',
 			'remarks' => 'Remarks',
 			'date' => 'Date',
 			'date_submitted' => 'Date Submitted',
@@ -103,7 +103,7 @@ class Otform extends CActiveRecord
 		$criteria->compare('employee_id',$this->employee_id);
 		$criteria->compare('start_time',$this->start_time,true);
 		$criteria->compare('end_time',$this->end_time,true);
-		$criteria->compare('total_hours',$this->total_hours);
+		#$criteria->compare('total_hours',$this->total_hours);
 		$criteria->compare('remarks',$this->remarks,true);
 		$criteria->compare('date',$this->date,true);
 		$criteria->compare('date_submitted',$this->date_submitted,true);
