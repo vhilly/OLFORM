@@ -72,6 +72,8 @@ $model=new Otform;
 if(isset($_POST['Otform']))
 {
 $model->attributes=$_POST['Otform'];
+$user = Yii::app()->user->id;
+$model->employee_id=$user;
 if($model->save())
 $this->redirect(array('view','id'=>$model->id));
 }
@@ -130,6 +132,7 @@ throw new CHttpException(400,'Invalid request. Please do not repeat this request
 */
 public function actionIndex()
 {
+$this->layout = "//layouts/main";
 $dataProvider=new CActiveDataProvider('Otform');
 $this->render('index',array(
 'dataProvider'=>$dataProvider,
@@ -158,7 +161,7 @@ public function actionApprove ()
   $type=isset($_POST['type']) ? $_POST['type']:'';
   $otform=Otform::model()->findByPk($id);
   if($otform){
-    $otform->status=$type==1?2:3;
+    $otform->status=$type;
     if($otform->save())
       $error++;
   }else{

@@ -57,7 +57,7 @@ class Otform extends CActiveRecord
 		return array(
 			'tl0' => array(self::BELONGS_TO, 'Employee', 'tl'),
 			'sv0' => array(self::BELONGS_TO, 'Employee', 'sv'),
-			'employee' => array(self::BELONGS_TO, 'Employee', 'employee_id'),
+			'users' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 

@@ -48,7 +48,7 @@
 
 ?>
 
-<div class="container" id="page">
+<div class="container-fluid" id="page">
   <center>
 <?php
   $msgType='';
