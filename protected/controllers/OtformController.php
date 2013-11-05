@@ -136,7 +136,13 @@ public function actionIndex()
   $criteria=array();
   $this->layout = "//layouts/main";
    
-  if(true){
+  $show_all=false;
+  if(Yii::app()->user->checkAccess('Supervisor') || Yii::app()->user->checkAccess('Team Lead')){
+    $show_all=true;
+  }
+  ///if sv  || tl || admin showall=true
+
+  if(!$show_all){
     $criteria=new CDbCriteria(array(                    
         'condition'=>'employee_id='.Yii::app()->user->id
     ));
@@ -168,8 +174,10 @@ public function actionApprove ()
   $id=isset($_POST['id']) ? $_POST['id']:'3233';
   $type=isset($_POST['type']) ? $_POST['type']:'';
   $otform=Otform::model()->findByPk($id);
+    
   if($otform){
     $otform->status=$type;
+    $otform->tl=Yii::app()->user->id;
     if($otform->save())
       $error++;
   }else{

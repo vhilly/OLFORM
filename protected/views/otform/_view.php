@@ -34,11 +34,12 @@ if ($data->status == 1)
 if ($data->status == 2)
   $a = "SV Approved"; 
 if ($data->status == 3)
-  $a = "Disapproved"; 
+  $a = "Disapproved";
+$user = User::model()->findByPk(Yii::app()->user->id);
 ?>
 
   <tr>
-    <td><?php echo $name;?></td>
+    <td><?php echo ucwords(strtolower($user->profile->firstname)) . ' ' . ucwords(strtolower($user->profile->lastname));?></td>
     <td><?php echo CHtml::encode($data->start_time); ?></td>
     <td><?php echo CHtml::encode($data->end_time); ?></td>
     <td><?php echo "$totalHours Hr(s) $mins Min(s)."; ?></td>
