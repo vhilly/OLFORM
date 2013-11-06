@@ -132,21 +132,20 @@ throw new CHttpException(400,'Invalid request. Please do not repeat this request
 */
 public function actionIndex()
 {
-
   $criteria=array();
   $this->layout = "//layouts/main";
-   
+ //per roles index view  
   $show_all=false;
   if(Yii::app()->user->checkAccess('Supervisor') || Yii::app()->user->checkAccess('Team Lead')){
     $show_all=true;
   }
-  ///if sv  || tl || admin showall=true
 
   if(!$show_all){
     $criteria=new CDbCriteria(array(                    
         'condition'=>'employee_id='.Yii::app()->user->id
     ));
   }
+ //
 $dataProvider=new CActiveDataProvider('Otform',array('criteria'=>$criteria));
 $this->render('index',array(
 'dataProvider'=>$dataProvider,
@@ -173,11 +172,16 @@ public function actionApprove ()
   $error=0;
   $id=isset($_POST['id']) ? $_POST['id']:'3233';
   $type=isset($_POST['type']) ? $_POST['type']:'';
+  $user=isset($_POST['user']) ? $_POST['user']:'';
   $otform=Otform::model()->findByPk($id);
     
   if($otform){
     $otform->status=$type;
-    $otform->tl=Yii::app()->user->id;
+    if(Yii::app()->user->checkAccess('Supervisor'))
+      $otform->sv=$user;
+    if(Yii::app()->user->checkAccess('Team Lead'))
+      $otform->tl=$user;
+  #    $otform->tl=Yii::app()->user->id;
     if($otform->save())
       $error++;
   }else{

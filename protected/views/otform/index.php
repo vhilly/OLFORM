@@ -41,7 +41,6 @@ $this->widget(
 	  <th>Team Lead</th>
 	  <th>Supervisor</th>
 	  <th>Status</th>
-	  <th>A</th>
     <?php if(Yii::app()->user->checkAccess('Team Lead')):?>
 	  <th>Team Lead's Approval</th>
     <?php endif?>
