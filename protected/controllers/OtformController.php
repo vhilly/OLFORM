@@ -79,7 +79,7 @@ if($model->save()){
   $from='olform@imperium.ph';
   $subject='OT Online Application';
   $message="Sir/Madam,<br>Churba is applying for OT and is asking for your approval.<br>"
-    .CHtml::link('Click Here For Details',array('otform/view','id'=>$model->id))."<br>OLFORM ADMIN";
+    .CHtml::link('Click Here For Details',$this->createAbsoluteUrl('otform/view ',array('id'=>$model->id)))."<br>OLFORM ADMIN";
   if(!$this->mailsend($to,$from,$subject,$message))
      Yii::app()->user->setFlash('error', '<center>'.Yii::t('app','Unable To send Mail').'<center>');
   $this->redirect(array('view','id'=>$model->id));
