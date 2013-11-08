@@ -74,8 +74,16 @@ if(isset($_POST['Otform']))
 $model->attributes=$_POST['Otform'];
 $user = Yii::app()->user->id;
 $model->employee_id=$user;
-if($model->save())
-$this->redirect(array('view','id'=>$model->id));
+if($model->save()){
+  $to='lyn@imperium.ph';
+  $from='olform@imperium.ph';
+  $subject='OT Online Application';
+  $message="Sir/Madam,<br>Churba is applying for OT and is asking for your approval.<br>"
+    .CHtml::link('Click Here For Details',array('otform/view','id'=>$model->id))."<br>OLFORM ADMIN";
+  if(!$this->mailsend($to,$from,$subject,$message))
+     Yii::app()->user->setFlash('error', '<center>'.Yii::t('app','Unable To send Mail').'<center>');
+  $this->redirect(array('view','id'=>$model->id));
+}
 }
 
 $this->render('create',array(
@@ -215,4 +223,15 @@ echo CActiveForm::validate($model);
 Yii::app()->end();
 }
 }
+public function mailsend($to,$from,$subject,$message){
+        $mail=Yii::app()->Smtpmail;
+        $mail->SetFrom($from, 'BRITNEY SPEARS');
+        $mail->Subject    = $subject;
+        $mail->MsgHTML($message);
+        $mail->AddAddress($to, "");
+        if(!$mail->Send())
+          return false;
+        else 
+          return true;
+    }
 }

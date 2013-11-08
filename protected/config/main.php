@@ -90,6 +90,16 @@ return array(
 	// application components
 	'theme'=>'bootstrap',
 	'components'=>array(
+        'Smtpmail'=>array(
+            'class'=>'application.extensions.smtpmail.PHPMailer',
+            'Host'=>"ssl://imperium.mail.pairserver.com",
+            'Username'=>'outbound@imperium.ph',
+            'Password'=>'imperiummail',
+            'Mailer'=>'smtp',
+            'Port'=>465,
+            'SMTPAuth'=>true, 
+        ),
+
         'user'=>array(
                 'class'=>'RWebUser',
                 // enable cookie-based authentication
