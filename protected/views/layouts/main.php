@@ -12,7 +12,7 @@
 <?php
   $this->widget('bootstrap.widgets.TbNavbar', array(
     'brand' => 'Imperium',
-		'brandUrl'=>array('/otform/index'),
+		#'brandUrl'=>array('/otform/index'),
     'fixed'=>'',
     'items' => array(
       array(
@@ -27,8 +27,8 @@
                 array('label'=>Yii::t('app','Logout').' ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ,
 */
-          #array('label'=>'Home','icon'=>'home', 'url'=>array('/otform/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
-          #array('label'=>'Create O.T Form','icon'=>'book', 'url'=>array('/otform/create'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
+          array('label'=>'O.T Dashboard','icon'=>'briefcase', 'url'=>array('/otform/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
+          array('label'=>'Leave Dashboard','icon'=>'book', 'url'=>array('/leave/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
         )
       ),
       array(

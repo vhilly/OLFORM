@@ -11,17 +11,6 @@
   $status_d=array(0=>'',1=>'',2=>'',3=>'danger');
 
 ?>
-<?php
-/* $box = $this->beginWidget(
-    'bootstrap.widgets.TbBox',
-    array(
-        'title' => $name,
-        'headerIcon' => 'icon-th-list',
-        'htmlOptions' => array('class' => 'bootstrap-widget-table')
-    )
-);*/
-?>
-
 <?php 
 $otFrom = CHtml::encode($data->start_time);
 $otTo = CHtml::encode($data->end_time);
@@ -40,7 +29,7 @@ $user = User::model()->findByPk(Yii::app()->user->id);
 ?>
 
   <tr>
-    <td><?php echo "{$data->users0->profile->firstname} {$data->users0->profile->lastname}" ;//echo ucwords(strtolower($user->profile->firstname)) . ' ' . ucwords(strtolower($user->profile->lastname));?></td>
+    <td><?php echo "{$data->users0->profile->firstname} {$data->users0->profile->lastname}" ;?></td>
     <td><?php echo CHtml::encode($data->start_time); ?></td>
     <td><?php echo CHtml::encode($data->end_time); ?></td>
     <td><?php echo "$totalHours Hr(s) $mins Min(s)."; ?></td>
