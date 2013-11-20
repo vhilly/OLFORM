@@ -75,6 +75,11 @@ class Leave extends CActiveRecord
 			'users0' => array(self::BELONGS_TO, 'User', 'employee_id'),
 			'profile' => array(self::BELONGS_TO, 'Profiles', 'position_id'),
       'position' => array(self::BELONGS_TO, 'Position', 'id'),
+			'tl' => array(self::BELONGS_TO, 'User', 'tl'),
+			'hrm' => array(self::BELONGS_TO, 'User', 'hrm'),
+			'om' => array(self::BELONGS_TO, 'User', 'om'),
+			'sv1' => array(self::BELONGS_TO, 'User', 'sv1'),
+			'sv2' => array(self::BELONGS_TO, 'User', 'sv2'),
 		);
 	}
 

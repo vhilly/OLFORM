@@ -21,7 +21,7 @@ $this->widget(
         'label' => 'Apply For New Leave',
         'size' => 'large',
         'type' => 'info',
-        'url' => Yii::app()->createUrl('otform/create')
+        'url' => Yii::app()->createUrl('leave/create')
     )
 );
 ?>
@@ -53,11 +53,17 @@ $this->widget(
 	  <th>Operations Manager</th>
 	  <th>HR Manager</th>
 	  <th>Status</th>
+  <?php if(Yii::app()->user->checkAccess('Team Lead') || Yii::app()->user->checkAccess('Supervisor')):?>
 	  <th>Supervisor 1 Approval</th>
 	  <th>Supervisor 2 Approval</th>
+  <?php endif?>
+  <?php if(Yii::app()->user->checkAccess('Manager')):?>
 	  <th>OM Manager's Approval</th>
+  <?php endif?>
+  <?php if(Yii::app()->user->checkAccess('HR Manager')):?>
 	  <th>HR Manager's Approval</th>
-
+  <?php endif?>
+  </tr>
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',

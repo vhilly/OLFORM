@@ -10,6 +10,6 @@ $this->breadcrumbs=array(
 	);
 	?>
 
-	<h1>Update O.T Form <?php echo $model->id; ?></h1>
+	<h3>Update O.T Form <?php echo $model->id; ?></h3>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

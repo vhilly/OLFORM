@@ -2,6 +2,17 @@
 /* @var $this LeaveController */
 /* @var $model Leave */
 /* @var $form CActiveForm */
+
+#echo "<pre>";
+#print_r($commands);
+#echo "</pre>";
+#die();
+#echo $pos->name;
+#foreach($commands as $r){
+#	echo $r->name."<br>";
+#}
+
+
 ?>
 
 
@@ -18,7 +29,7 @@
     <?php echo $form->hiddenField($model,'employee_id',array('value'=>Yii::app()->user->id)); ?>
    <tr>
      <td colspan=2> 
-       <?php  echo 'Name :' .' '. ucwords(strtolower($user->profile->lastname)) . ' ' . ucwords(strtolower($user->profile->firstname)) . ' ' . ucwords(strtolower($user->profile->middle_initial));?>
+       <?php  echo 'Name :' .' '. '<b>'  . ucwords(strtolower($user->profile->lastname)) . ' ' . ucwords(strtolower($user->profile->firstname)) . ' ' . ucwords(strtolower($user->profile->middle_initial)).'</b>';?>
      </td> 
    </tr>
 
@@ -36,7 +47,7 @@
     
    <tr>
      <td colspan=2> 
-       <?php  echo 'Position Designation : ' .' '. ucwords(strtolower($user->profile->position_id));?>
+       <?php  echo 'Position Designation : ' .' '. '<b>' .$pos->name.'</b>';?>
      </td> 
    </tr>
     

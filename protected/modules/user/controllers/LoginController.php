@@ -21,7 +21,8 @@ class LoginController extends Controller
 					if (Yii::app()->user->returnUrl=='/index.php')
 						$this->redirect(Yii::app()->controller->module->returnUrl);
 					else
-						$this->redirect(array('/otform/index'));
+						$this->redirect(array('/site/index'));
+			      #$this->redirect(Yii::app()->controller->module->returnUrl);
 				}
 			}
 			// display the login form

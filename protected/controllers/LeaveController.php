@@ -14,8 +14,9 @@ class LeaveController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+      'rights',
+			#'accessControl', // perform access control for CRUD operations
+			#'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -26,6 +27,7 @@ class LeaveController extends Controller
 	 */
 	public function accessRules()
 	{
+/*
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
@@ -43,6 +45,7 @@ class LeaveController extends Controller
 				'users'=>array('*'),
 			),
 		);
+*/
 	}
 
 	/**
@@ -51,6 +54,7 @@ class LeaveController extends Controller
 	 */
 	public function actionView($id)
 	{
+    $this->layout='//layouts/main';
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -67,7 +71,14 @@ class LeaveController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
     $lt=CHtml::listData(LeaveType::model()->findAll(),'id','name'); 
-    
+    $user = User::model()->findByPk(Yii::app()->user->id);
+    $pid  = $user->profile->position_id; 
+    //$position = "SELECT * FROM position";
+    //$command=Yii::app()->db->createCommand($position);
+    //$command->execute();
+    //$command->queryAll();
+//  print_r($command);  
+ 		$pos = Position::model()->findByPk($pid);
 		if(isset($_POST['Leave']))
 		{
  #     print_r($_POST);die();
@@ -75,7 +86,7 @@ class LeaveController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-		$this->render('create',compact('model','lt'));
+		$this->render('create',compact('model','lt','pos'));
 	}
 
 	/**
@@ -121,11 +132,32 @@ class LeaveController extends Controller
 	 */
 	public function actionIndex()
 	{
+    $criteria=array();
     $this->layout = "//layouts/main";
     $uid = User::model()->findByPk(Yii::app()->user->id);
-    $logId = $uid->profile->department_id;
+    //$logId = $uid->profile->department_id;
+    $show_all=false;
+    if(Yii::app()->user->checkAccess('Supervisor') || Yii::app()->user->checkAccess('Team Lead') || Yii::app()->user->checkAccess('Manager') || Yii::app()->user->checkAccess('HR Manager')){
+      $show_all=true;
+    }
 
-		$dataProvider=new CActiveDataProvider('Leave');
+    if(!$show_all){
+      $criteria=new CDbCriteria(array(                    
+          'condition'=>'employee_id='.Yii::app()->user->id
+      ));
+    }
+   //
+   // echo "$logId";
+		$dataProvider=new CActiveDataProvider('Leave',array(
+        'criteria'=>$criteria,
+           #array(
+           # 'with'=>'deparment',
+           # 'condition'=>'d.id=:department_id',
+           # 'params'=>array(':deparment_id'=>$logId)	,
+           # 'join'=>'INNER JOIN department d ON d.id=e.department_id',
+           #),
+      )
+    );
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -145,6 +177,33 @@ class LeaveController extends Controller
 			'model'=>$model,
 		));
 	}
+
+public function actionApprove ()
+{
+  $error=0;
+  $id=isset($_POST['id']) ? $_POST['id']:'3233';
+  $type=isset($_POST['type']) ? $_POST['type']:'';
+  $user=isset($_POST['user']) ? $_POST['user']:'';
+  $lv=Leave::model()->findByPk($id);
+  if($lv){
+    $lv->status=$type;
+    if(Yii::app()->user->checkAccess('Manager'))
+      $lv->om=$user;
+    if(Yii::app()->user->checkAccess('HR Manager'))
+      $lv->hrm=$user;
+    if(Yii::app()->user->checkAccess('Supervisor'))
+      $lv->sv1=$user;
+      $lv->sv2=$user;
+    if(Yii::app()->user->checkAccess('Team Lead'))
+      $lv->tl=$user;
+  #    $otform->tl=Yii::app()->user->id;
+    if($lv->save())
+      $error++;
+  }else{
+      $error++;
+  }
+  echo json_encode(compact('error'));
+}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

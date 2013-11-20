@@ -11,6 +11,8 @@ array('label'=>'Manage Otform','url'=>array('admin')),
 */
 ?>
 
-<h1>O.T Form Application</h1>
+<h3>O.T Form Application</h3>
+
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+

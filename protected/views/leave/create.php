@@ -16,7 +16,7 @@ $this->menu=array(
 <table border=2>
 <tr><td colspan=2><b><font size=4>APPLICATION FOR LEAVE</font></b></td></tr>
 
-<?php echo $this->renderPartial('_form', compact('model','lt')); ?>
+<?php echo $this->renderPartial('_form', compact('model','lt','pos')); ?>
 </center>
 
 </table>
