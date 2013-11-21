@@ -8,20 +8,25 @@
 
 <?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->hiddenField($model,'employee_id',array('class'=>'span2')); ?>
-  <?php  $user = User::model()->findByPk(Yii::app()->user->id);  ?>
+<?php echo $form->hiddenField($model,'employee_id',array('class'=>'span2')); ?>
+<?php  
+  $user = User::model()->findByPk(Yii::app()->user->id);  
+  $pid  = $user->profile->position_id;
+  $pos = Position::model()->findByPk($pid);
+?>
 <b>Name:</b> <?php echo "{$user->profile->firstname} {$user->profile->lastname}" ;?>
 <br>
-<b>Position:</b> <?php echo "{$user->profile->position_id}";?></b>
+<b>Position:</b> <?php echo $pos->name;?></b>
 <br>
 <p class="help-block">Fields with <span class="required">*</span> are required.</p>
 <table border=1 id="otform_table">
 	<tr><td>
 				<!---->
         <?php echo $form->datepickerRow($model,'date',array(
+					'value'=>date("Y-m-d"),
           'options' => array(
 						'language' => 'en',
-						'format'=>'yyyy-mm-dd'
+						'format'=>'yyyy-mm-dd',
 					),
           'prepend' => '<i class="icon-calendar"></i>'
         )); ?>

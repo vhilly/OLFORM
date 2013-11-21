@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Submitted O.T Form/s</h1>
+<h1>Submitted O.T. Form/s</h1>
 
 <?php 
 $this->widget(
@@ -47,6 +47,7 @@ $this->widget(
     <?php if(Yii::app()->user->checkAccess('Supervisor')):?>
 	  <th>Supervisor's Approval</th>
     <?php endif?>
+	  <th>Disapproval Reason</th>
   </tr>
 <?php $this->widget('bootstrap.widgets.TbListView',array(
 'dataProvider'=>$dataProvider,

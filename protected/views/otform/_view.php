@@ -47,7 +47,7 @@ $user = User::model()->findByPk(Yii::app()->user->id);
     $this->widget(
       'bootstrap.widgets.TbButton',
       array(
-        'label' => !$approve ? 'Approve' : 'Approved',
+        'label' => !$approve ? 'Approved' : 'Approve',
         'size' => 'small',
         'type' =>$status[$data->status],
         'htmlOptions'=> array(
@@ -67,7 +67,7 @@ $user = User::model()->findByPk(Yii::app()->user->id);
     $this->widget(
       'bootstrap.widgets.TbButton',
       array(
-        'label' => !$approve ? 'Disapproved' : 'Disapprove',
+        'label' => !$approve ? 'Disapprove' : 'Disapproved',
         'size' => 'small',
         'type' =>$status_d[$data->status],
         'htmlOptions'=> array(
@@ -128,6 +128,7 @@ $user = User::model()->findByPk(Yii::app()->user->id);
     ?>
   </td>
   <?php endif?>
+  <td><?php echo ""; ?></td>
   </tr>
 <script>
   function approve(id,a,type,user){

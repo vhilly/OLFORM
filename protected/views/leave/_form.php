@@ -36,6 +36,7 @@
     <tr>
      <td colspan=2> 
         <?php echo $form->datepickerRow($model,'date_filed',array(
+					'value'=>date("Y-m-d"),
           'options' => array(
             'language' => 'en',
             'format'=>'yyyy-mm-dd'
