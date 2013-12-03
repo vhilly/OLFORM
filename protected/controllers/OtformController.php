@@ -145,15 +145,23 @@ public function actionIndex()
   $this->layout = "//layouts/main";
  //per roles index view  
   $show_all=false;
-  if(Yii::app()->user->checkAccess('Supervisor') || Yii::app()->user->checkAccess('Team Lead')){
+  $uid=Yii::app()->user->id;
+  $up=Profiles::model()->findByPk($uid);
+  if(Yii::app()->user->checkAccess('Supervisor') || Yii::app()->user->checkAccess('Team Lead') || Yii::app()->user->checkAccess('Manager') || Yii::app()->user->checkAccess('HR Manager')){
     $show_all=true;
   }
 
   if(!$show_all){
     $criteria=new CDbCriteria(array(                    
-        'condition'=>'employee_id='.Yii::app()->user->id
+        'condition'=>"employee_id=$uid"
     ));
   }
+  
+ if($show_all && (Yii::app()->user->checkAccess('Supervisor') || Yii::app()->user->checkAccess('Team Lead'))){
+    $criteria=new CDbCriteria;
+    $criteria->join = 'LEFT JOIN profiles ON profiles.user_id = employee_id';
+    $criteria->addCondition("department_id=$up->department_id");
+ }
  //
 $dataProvider=new CActiveDataProvider('Otform',array('criteria'=>$criteria));
 $this->render('index',array(
@@ -182,15 +190,24 @@ public function actionApprove ()
   $id=isset($_POST['id']) ? $_POST['id']:'3233';
   $type=isset($_POST['type']) ? $_POST['type']:'';
   $user=isset($_POST['user']) ? $_POST['user']:'';
+  $reason=isset($_POST['reason']) ? $_POST['reason']:'';
   $otform=Otform::model()->findByPk($id);
     
   if($otform){
     $otform->status=$type;
-    if(Yii::app()->user->checkAccess('Supervisor'))
-      $otform->sv=$user;
-    if(Yii::app()->user->checkAccess('Team Lead'))
-      $otform->tl=$user;
-  #    $otform->tl=Yii::app()->user->id;
+
+    if(Yii::app()->user->checkAccess('Supervisor') || Yii::app()->user->checkAccess('Team Lead')){
+      $otform->tl_sv=$user;
+      $otform->tl_disapproval=$reason;  
+    }
+    if(Yii::app()->user->checkAccess('Manager')){
+      $otform->om=$user;
+      $otform->om_disapproval=$reason;
+    }
+    if(Yii::app()->user->checkAccess('HR Manager')){
+      $otform->hr=$user;
+      $otform->hr_disapproval=$reason;
+    }
     if($otform->save())
       $error++;
   }else{

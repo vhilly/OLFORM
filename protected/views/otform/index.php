@@ -29,7 +29,6 @@ $this->widget(
     )
 );
 ?>
-
 <table class="table table-stripped table-bordered" >
   <tr>
 	  <th>Name</th>
@@ -38,16 +37,22 @@ $this->widget(
 	  <th>Total Hours</th>
     <th>Remarks</th>
 	  <th>Date</th>
-	  <th>Team Lead</th>
-	  <th>Supervisor</th>
+	  <th>TL/SV</th>
+	  <th>Manager</th>
+	  <th>HR Manager</th>
 	  <th>Status</th>
-    <?php if(Yii::app()->user->checkAccess('Team Lead')):?>
-	  <th>Team Lead's Approval</th>
+    <?php if(Yii::app()->user->checkAccess('Team Lead') || Yii::app()->user->checkAccess('Supervisor')):?>
+	  <th>TL/SV's Approval</th>
     <?php endif?>
-    <?php if(Yii::app()->user->checkAccess('Supervisor')):?>
-	  <th>Supervisor's Approval</th>
+    <?php if(Yii::app()->user->checkAccess('Manager')):?>
+	  <th>Manager's Approval</th>
     <?php endif?>
-	  <th>Disapproval Reason</th>
+    <?php if(Yii::app()->user->checkAccess('HR Manager')):?>
+	  <th>HR Manager's Approval</th>
+    <?php endif?>
+	  <th>TL/SV Disapproval Reason</th>
+	  <th>OM Disapproval Reason</th>
+	  <th>HR Disapproval Reason</th>
   </tr>
 <?php $this->widget('bootstrap.widgets.TbListView',array(
 'dataProvider'=>$dataProvider,

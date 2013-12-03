@@ -48,14 +48,14 @@ $this->widget(
 	  <th>Leave Type</th>
     <th>Reason</th>
 	  <th>Date of Leave</th>
-	  <th>Supervisor 1</th>
-	  <th>Supervisor 2</th>
+	  <th>TL/Supervisor 1</th>
+	  <th>TL/Supervisor 2</th>
 	  <th>Operations Manager</th>
 	  <th>HR Manager</th>
 	  <th>Status</th>
   <?php if(Yii::app()->user->checkAccess('Team Lead') || Yii::app()->user->checkAccess('Supervisor')):?>
-	  <th>Supervisor 1 Approval</th>
-	  <th>Supervisor 2 Approval</th>
+	  <th>TL/Supervisor 1 Approval</th>
+	  <th>TL/Supervisor 2 Approval</th>
   <?php endif?>
   <?php if(Yii::app()->user->checkAccess('Manager')):?>
 	  <th>OM Manager's Approval</th>

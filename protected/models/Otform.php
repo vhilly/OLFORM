@@ -40,7 +40,7 @@ class Otform extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('date,start_time, end_time,remarks', 'required'),
-			array('employee_id, tl, sv, status', 'numerical', 'integerOnly'=>true),
+			array('employee_id, tl_sv, om, hr, status', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, employee_id, start_time, end_time, remarks, date, date_submitted, tl, sv, status', 'safe', 'on'=>'search'),
@@ -55,9 +55,11 @@ class Otform extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tl0' => array(self::BELONGS_TO, 'User', 'tl'),
-			'sv0' => array(self::BELONGS_TO, 'User', 'sv'),
+			'tl_sv0' => array(self::BELONGS_TO, 'User', 'tl_sv'),
+			'om0' => array(self::BELONGS_TO, 'User', 'om'),
+			'hr0' => array(self::BELONGS_TO, 'User', 'hr'),
 			'users0' => array(self::BELONGS_TO, 'User', 'employee_id'),
+			'profile' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -75,8 +77,9 @@ class Otform extends CActiveRecord
 			'remarks' => 'Remarks',
 			'date' => 'Date',
 			'date_submitted' => 'Date Submitted',
-			'tl' => 'Team Lead',
-			'sv' => 'Supervisor',
+			'tl_sv' => 'Team Lead/Supervisor',
+			'om' => 'Operations Manager',
+			'hr' => 'HR Manager',
 			'status' => 'Status',
 		);
 	}

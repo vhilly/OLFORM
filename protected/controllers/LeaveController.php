@@ -193,9 +193,9 @@ public function actionApprove ()
       $lv->hrm=$user;
     if(Yii::app()->user->checkAccess('Supervisor'))
       $lv->sv1=$user;
-      $lv->sv2=$user;
     if(Yii::app()->user->checkAccess('Team Lead'))
-      $lv->tl=$user;
+      $lv->sv2=$user;
+  #    $lv->tl=$user;
   #    $otform->tl=Yii::app()->user->id;
     if($lv->save())
       $error++;

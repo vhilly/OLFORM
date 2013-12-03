@@ -9,9 +9,9 @@ $status=array(0=>'',1=>'info',2=>'info',3=>'',4=>'success');
 $status_d=array(0=>'',1=>'',2=>'',3=>'danger',4=>'');
 $uid = User::model()->findByPk(Yii::app()->user->id);
 if ($data->status == 0)
-  $a = "Waiting for TL's Approval"; 
+  $a = "Waiting for TL/SV Approval"; 
 if ($data->status == 1)
-  $a = "Waiting for SV's Approval"; 
+  $a = "Waiting for TL/SV Approval"; 
 if ($data->status == 2)
   $a = "Waiting for Operation Manager's Aprroval"; 
 if ($data->status == 3)
@@ -41,7 +41,7 @@ $pos = Position::model()->findByPk($pid);
       <?php
         //supervisor 1
         $approve=0;
-        if($data->status ==0)
+        if($data->status ==1)
           $approve =1;
         $this->widget(
           'bootstrap.widgets.TbButton',
@@ -62,7 +62,7 @@ $pos = Position::model()->findByPk($pid);
       echo "<br>";
       echo "<br>";
         $approve=0;
-        if($data->status ==1)
+        if($data->status ==4)
           $approve=1;
         $this->widget(
           'bootstrap.widgets.TbButton',
@@ -86,7 +86,7 @@ $pos = Position::model()->findByPk($pid);
       <?php
         //supervisor 2
         $approve=0;
-        if($data->status ==0)
+        if($data->status ==1)
           $approve =1;
         $this->widget(
           'bootstrap.widgets.TbButton',
@@ -107,7 +107,7 @@ $pos = Position::model()->findByPk($pid);
       echo "<br>";
       echo "<br>";
         $approve=0;
-        if($data->status ==1)
+        if($data->status ==4)
           $approve=1;
         $this->widget(
           'bootstrap.widgets.TbButton',
@@ -133,7 +133,7 @@ $pos = Position::model()->findByPk($pid);
       <?php
         //Operations Manager
         $approve=0;
-        if($data->status ==0)
+        if($data->status ==2)
           $approve =1;
         $this->widget(
           'bootstrap.widgets.TbButton',
@@ -154,7 +154,7 @@ $pos = Position::model()->findByPk($pid);
       echo "<br>";
       echo "<br>";
         $approve=0;
-        if($data->status ==1)
+        if($data->status ==4)
           $approve=1;
         $this->widget(
           'bootstrap.widgets.TbButton',
@@ -180,7 +180,7 @@ $pos = Position::model()->findByPk($pid);
       <?php
         //HR Manager
         $approve=0;
-        if($data->status ==0)
+        if($data->status ==3)
           $approve =1;
         $this->widget(
           'bootstrap.widgets.TbButton',
@@ -201,7 +201,7 @@ $pos = Position::model()->findByPk($pid);
       echo "<br>";
       echo "<br>";
         $approve=0;
-        if($data->status ==1)
+        if($data->status ==4)
           $approve=1;
         $this->widget(
           'bootstrap.widgets.TbButton',

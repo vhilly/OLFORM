@@ -10,6 +10,8 @@
 
 <body>
 <?php
+$user = (!Yii::app()->user->isGuest) ? User::model()->findByPk(Yii::app()->user->id) : "";
+$name = $user!="" ? $user->profile->firstname : "";
   $this->widget('bootstrap.widgets.TbNavbar', array(
     'brand' => 'Imperium',
 		#'brandUrl'=>array('/otform/index'),
@@ -27,7 +29,7 @@
                 array('label'=>Yii::t('app','Logout').' ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ,
 */
-          array('label'=>'O.T Dashboard','icon'=>'briefcase', 'url'=>array('/otform/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
+          array('label'=>'O.T. Dashboard','icon'=>'briefcase', 'url'=>array('/otform/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
           array('label'=>'Leave Dashboard','icon'=>'book', 'url'=>array('/leave/index'), 'visible'=>!Yii::app()->user->isGuest,'active'=>false),
         )
       ),
@@ -37,6 +39,7 @@
         'encodeLabel'=>false,
         'items' => array(
           '...',
+          array('label'=>'Logged in as'.' '.'<b>'.$name.'</b>','icon'=>'user','url'=>array('/user/profile'),'visible'=>!Yii::app()->user->isGuest,'active'=>false),
           array('label'=>Yii::t('app','Rights'), 'url'=>array('/rights'),'visible'=>Yii::app()->user->checkAccess('Admin')),
           array('label'=>'','icon'=>'off','url'=>array('/site/logout'),'visible'=>!Yii::app()->user->isGuest,'active'=>false),
           array('label'=>'Login','icon'=>'off','url'=>array('/user/login'),'visible'=>Yii::app()->user->isGuest,'active'=>false),
