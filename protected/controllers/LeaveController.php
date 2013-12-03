@@ -134,7 +134,9 @@ class LeaveController extends Controller
 	{
     $criteria=array();
     $this->layout = "//layouts/main";
-    $uid = User::model()->findByPk(Yii::app()->user->id);
+    #$uid = User::model()->findByPk(Yii::app()->user->id);
+    $uid=Yii::app()->user->id;
+    $up=Profiles::model()->findByPk($uid);
     //$logId = $uid->profile->department_id;
     $show_all=false;
     if(Yii::app()->user->checkAccess('Supervisor') || Yii::app()->user->checkAccess('Team Lead') || Yii::app()->user->checkAccess('Manager') || Yii::app()->user->checkAccess('HR Manager')){
@@ -143,21 +145,17 @@ class LeaveController extends Controller
 
     if(!$show_all){
       $criteria=new CDbCriteria(array(                    
-          'condition'=>'employee_id='.Yii::app()->user->id
+          'condition'=>"employee_id=$uid"
       ));
     }
-   //
-   // echo "$logId";
-		$dataProvider=new CActiveDataProvider('Leave',array(
-        'criteria'=>$criteria,
-           #array(
-           # 'with'=>'deparment',
-           # 'condition'=>'d.id=:department_id',
-           # 'params'=>array(':deparment_id'=>$logId)	,
-           # 'join'=>'INNER JOIN department d ON d.id=e.department_id',
-           #),
-      )
-    );
+
+   if($show_all && (Yii::app()->user->checkAccess('Supervisor') || Yii::app()->user->checkAccess('Team Lead'))){
+      $criteria=new CDbCriteria;
+      $criteria->join = 'LEFT JOIN profiles ON profiles.user_id = employee_id';
+      $criteria->addCondition("department_id=$up->department_id");
+   }
+
+		$dataProvider=new CActiveDataProvider('Leave',array('criteria'=>$criteria));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

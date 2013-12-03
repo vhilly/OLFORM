@@ -5,8 +5,8 @@ $sv=Yii::app()->user->id;
 $name=$sv?$sv:'';
 
 $user = User::model()->findByPk(Yii::app()->user->id);
-$status=array(0=>'',1=>'info',2=>'info',3=>'',4=>'success');
-$status_d=array(0=>'',1=>'',2=>'',3=>'danger',4=>'');
+$status=array(0=>'',1=>'info',2=>'info',3=>'success',4=>'');
+$status_d=array(0=>'',1=>'',2=>'',3=>'',4=>'danger');
 $uid = User::model()->findByPk(Yii::app()->user->id);
 if ($data->status == 0)
   $a = "Waiting for TL/SV Approval"; 
@@ -31,10 +31,10 @@ $pos = Position::model()->findByPk($pid);
     <td><?php echo "{$data->leaveType->name}" ;?></td>
     <td><?php echo CHtml::encode(ucwords(strtolower($data->reason)));?></td>
     <td><?php echo '('.CHtml::encode($data->start_date) .') - ('. CHtml::encode($data->end_date).')';?></td>
-    <td><?php echo CHtml::encode(isset($data->sv1->profile->firstname) ? $data->sv1->profile->firstname:'')." ".CHtml::encode(isset($data->sv1->profile->lastname) ? $data->sv1->profile->lastname:''); ?></td>
-    <td><?php echo CHtml::encode(isset($data->sv2->profile->firstname) ? $data->sv2->profile->firstname:'')." ".CHtml::encode(isset($data->sv2->profile->lastname) ? $data->sv2->profile->lastname:''); ?></td>
-    <td><?php echo CHtml::encode(isset($data->om->profile->firstname) ? $data->om->profile->firstname:'')." ".CHtml::encode(isset($data->om->profile->lastname) ? $data->om->profile->lastname:''); ?></td>
-    <td><?php echo CHtml::encode(isset($data->hrm->profile->firstname) ? $data->hrm->profile->firstname:'')." ".CHtml::encode(isset($data->hrm->profile->lastname) ? $data->hrm->profile->lastname:''); ?></td>
+    <td><?php echo CHtml::encode(isset($data->sv10->profile->firstname) ? $data->sv10->profile->firstname:'')." ".CHtml::encode(isset($data->sv10->profile->lastname) ? $data->sv10->profile->lastname:''); ?></td>
+    <td><?php echo CHtml::encode(isset($data->sv20->profile->firstname) ? $data->sv20->profile->firstname:'')." ".CHtml::encode(isset($data->sv20->profile->lastname) ? $data->sv20->profile->lastname:''); ?></td>
+    <td><?php echo CHtml::encode(isset($data->om0->profile->firstname) ? $data->om0->profile->firstname:'')." ".CHtml::encode(isset($data->om0->profile->lastname) ? $data->om0->profile->lastname:''); ?></td>
+    <td><?php echo CHtml::encode(isset($data->hrm0->profile->firstname) ? $data->hrm0->profile->firstname:'')." ".CHtml::encode(isset($data->hrm0->profile->lastname) ? $data->hrm0->profile->lastname:''); ?></td>
     <td><?php echo $a;?></td>
   <?php if(Yii::app()->user->checkAccess('Team Lead') || Yii::app()->user->checkAccess('Supervisor')):?>
     <td>
@@ -67,7 +67,7 @@ $pos = Position::model()->findByPk($pid);
         $this->widget(
           'bootstrap.widgets.TbButton',
           array(
-            'label' => !$approve ? 'Disapproved' : 'Disapprove',
+            'label' => !$approve ? 'Disapprove' : 'Disapproved',
             'size' => 'small',
             'type' =>$status_d[$data->status],
             'htmlOptions'=> array(
@@ -112,7 +112,7 @@ $pos = Position::model()->findByPk($pid);
         $this->widget(
           'bootstrap.widgets.TbButton',
           array(
-            'label' => !$approve ? 'Disapproved' : 'Disapprove',
+            'label' => !$approve ? 'Disapprove' : 'Disapproved',
             'size' => 'small',
             'type' =>$status_d[$data->status],
             'htmlOptions'=> array(
@@ -159,7 +159,7 @@ $pos = Position::model()->findByPk($pid);
         $this->widget(
           'bootstrap.widgets.TbButton',
           array(
-            'label' => !$approve ? 'Disapproved' : 'Disapprove',
+            'label' => !$approve ? 'Disapprove' : 'Disapproved',
             'size' => 'small',
             'type' =>$status_d[$data->status],
             'htmlOptions'=> array(
